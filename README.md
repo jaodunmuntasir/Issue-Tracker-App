@@ -1,2 +1,2 @@
-# issue-tracker-app
-Made with Angular v17
+# Issue Tracker App
+Made with Angular v17.3
