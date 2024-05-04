@@ -1,3 +1,6 @@
+# Issue Tracker App
+Made with Angular v17.3
+
 # IssueTrackerApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
