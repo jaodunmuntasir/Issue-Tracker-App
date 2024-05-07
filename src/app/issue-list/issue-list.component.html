@@ -3,40 +3,54 @@
   <h2 class="display-2 my-3">My issues</h2>
   <p><a class="btn btn-primary" href="#" role="button">New issue</a></p>
 
-  <app-status-filter [status]="status" (statusChange)="changeStatus($event)"></app-status-filter>
+  <app-status-filter
+    [status]="status"
+    (statusChange)="changeStatus($event)"
+  ></app-status-filter>
 
   {{ status }}
 
-  <div class="list-group">
-    @for (issue of filteredIssues; track issue.id) {
-      <a
-        class="list-group-item list-group-item-action"
-        [class.list-group-item-primary]="issue.status === 'Open'"
-        [class.list-group-item-warning]="issue.status === 'In Progress'"
-        [class.list-group-item-success]="issue.status === 'Closed'"
-        (click)="selectedIssue = issue"
-      >
-        <div class="d-flex w-100 justify-content-between align-items-center">
-          <h5 class="mb-1">{{ issue.title }}</h5>
-          <span
-            class="badge"
-            [class.text-bg-primary]="issue.status === 'Open'"
-            [class.text-bg-warning]="issue.status === 'In Progress'"
-            [class.text-bg-success]="issue.status === 'Closed'"
-            >{{ issue.status }}</span
+  <div class="row">
+    <div class="col-6">
+      <div class="list-group">
+        @for (issue of filteredIssues; track issue.id) {
+          <a
+            class="list-group-item list-group-item-action"
+            [class.list-group-item-primary]="issue.status === 'Open'"
+            [class.list-group-item-warning]="issue.status === 'In Progress'"
+            [class.list-group-item-success]="issue.status === 'Closed'"
+            (click)="selectedIssue = issue"
           >
-        </div>
-        <p class="mb-1">
-          {{ issue.description }}
-        </p>
-        <small>
-          <i class="fas fa-map-marker-alt"></i> {{ issue.place }}
-          <i class="fas fa-calendar-alt"></i> 2019.01.01.
-          <i class="fas fa-comment"></i>
-          <span class="badge badge-light badge-pill">3</span>
-        </small>
-      </a>
+            <div
+              class="d-flex w-100 justify-content-between align-items-center"
+            >
+              <h5 class="mb-1">{{ issue.title }}</h5>
+              <span
+                class="badge"
+                [class.text-bg-primary]="issue.status === 'Open'"
+                [class.text-bg-warning]="issue.status === 'In Progress'"
+                [class.text-bg-success]="issue.status === 'Closed'"
+                >{{ issue.status }}</span
+              >
+            </div>
+            <p class="mb-1">
+              {{ issue.description }}
+            </p>
+            <small>
+              <i class="fas fa-map-marker-alt"></i> {{ issue.place }}
+              <i class="fas fa-calendar-alt"></i> 2019.01.01.
+              <i class="fas fa-comment"></i>
+              <span class="badge badge-light badge-pill">3</span>
+            </small>
+          </a>
+        }
+      </div>
+      {{ selectedIssue | json }}
+    </div>
+    @if (selectedIssue) {
+      <div class="col-6">
+        <app-issue-form [issue]="selectedIssue"></app-issue-form>
+      </div>
     }
   </div>
-  {{ selectedIssue | json}}
 </div>

@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Issue } from '../issue';
 import { JsonPipe, NgForOf } from '@angular/common';
 import { StatusFilterComponent } from "../status-filter/status-filter.component";
+import { NewIssueComponent } from "../new-issue/new-issue.component";
+import { IssueFormComponent } from "../issue-form/issue-form.component";
 
 @Component({
     selector: 'app-issue-list',
     standalone: true,
     templateUrl: './issue-list.component.html',
     styleUrl: './issue-list.component.css',
-    imports: [NgForOf, StatusFilterComponent, JsonPipe]
+    imports: [NgForOf, StatusFilterComponent, JsonPipe, IssueFormComponent]
 })
 export class IssueListComponent implements OnInit {
   issues: Issue[] = [
