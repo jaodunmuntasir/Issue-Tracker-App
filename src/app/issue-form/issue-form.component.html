@@ -1,20 +1,14 @@
-<form [formGroup]="issueForm" action="" novalidate>
-  {{ issue | json }}
-  <hr />
-  {{ issueForm.value | json }}
+{{ issue | json }} <!-- Issue object from the parent component -->
+<hr />
+{{ issueForm.value | json }} <!-- Form values -->
 
+<form [formGroup]="issueForm" action="" novalidate>
   <div class="form-group">
     <label for="title">Title</label>
     <input
       formControlName="title"
-      [class.is-valid]="
-        issueForm.controls.title.valid && issueForm.controls.title.touched
-      "
-      [class.is-invalid]="
-        issueForm.controls.title.invalid &&
-        issueForm.controls.title.touched &&
-        issueForm.controls.title.dirty
-      "
+      [class.is-valid]="title?.valid && title?.touched"
+      [class.is-invalid]="title?.invalid && title?.touched && title?.dirty"
       type="text"
       class="form-control"
       id="title"
@@ -27,14 +21,9 @@
     <label for="description">Description</label>
     <textarea
       formControlName="description"
-      [class.is-valid]="
-        issueForm.controls.description.valid &&
-        issueForm.controls.description.touched
-      "
+      [class.is-valid]="description?.valid && description?.touched"
       [class.is-invalid]="
-        issueForm.controls.description.invalid &&
-        issueForm.controls.description.touched &&
-        issueForm.controls.description.dirty
+        description?.invalid && description?.touched && description?.dirty
       "
       class="form-control"
       id="description"
@@ -47,14 +36,8 @@
     <label for="place">Place</label>
     <input
       formControlName="place"
-      [class.is-valid]="
-        issueForm.controls.place.valid && issueForm.controls.place.touched
-      "
-      [class.is-invalid]="
-        issueForm.controls.place.invalid &&
-        issueForm.controls.place.touched &&
-        issueForm.controls.place.dirty
-      "
+      [class.is-valid]="place?.valid && place?.touched"
+      [class.is-invalid]="place?.invalid && place?.touched && place?.dirty"
       type="text"
       class="form-control"
       id="place"
@@ -67,14 +50,8 @@
     <label for="status">Status</label>
     <select
       formControlName="status"
-      [class.is-valid]="
-        issueForm.controls.status.valid && issueForm.controls.status.touched
-      "
-      [class.is-invalid]="
-        issueForm.controls.status.invalid &&
-        issueForm.controls.status.touched &&
-        issueForm.controls.status.dirty
-      "
+      [class.is-valid]="status?.valid && status?.touched"
+      [class.is-invalid]="status?.invalid && status?.touched && status?.dirty"
       class="form-control"
       id="status"
       required
