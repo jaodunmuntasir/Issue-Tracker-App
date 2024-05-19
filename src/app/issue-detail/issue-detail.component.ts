@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Issue } from '../issue';
 import { IssueService } from '../issue.service';
 
 @Component({
   selector: 'app-issue-detail',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './issue-detail.component.html',
   styleUrl: './issue-detail.component.css',
 })

@@ -1,6 +1,11 @@
 <!-- New issue page -->
 <div class="container">
-    <h2 class="display-2 my-3">New issue</h2>
+
+    @if (issue.id) {
+        <h2 class="display-2 my-3">Edit Issue</h2>
+    } @else {
+        <h2 class="display-2 my-3">New Issue</h2>
+    }
   
-    <app-issue-form (save)="handleSave($event)"></app-issue-form>
+    <app-issue-form [issue]="issue" (save)="handleSave($event)"></app-issue-form>
 </div>
