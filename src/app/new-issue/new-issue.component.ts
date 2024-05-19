@@ -19,7 +19,7 @@ export class NewIssueComponent implements OnInit {
     private issueService: IssueService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +37,8 @@ export class NewIssueComponent implements OnInit {
   handleSave(issue: Issue) {
     console.log(issue);
     if (this.issue.id) {
-        this.issueService.updateIssue(this.issue.id, issue);
-        this.location.back();
+      this.issueService.updateIssue(this.issue.id, issue);
+      this.location.back();
     } else {
       this.issueService.addIssue(issue);
       this.router.navigate(['/issues']);

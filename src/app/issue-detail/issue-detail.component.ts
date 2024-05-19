@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Issue } from '../issue';
 import { IssueService } from '../issue.service';
 
@@ -11,9 +11,13 @@ import { IssueService } from '../issue.service';
   styleUrl: './issue-detail.component.css',
 })
 export class IssueDetailComponent implements OnInit {
-  issue : Issue = new Issue();
+  issue: Issue = new Issue();
 
-  constructor(private route: ActivatedRoute, private issueService : IssueService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private issueService: IssueService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     const paramId = this.route.snapshot.paramMap.get('id');
@@ -25,5 +29,10 @@ export class IssueDetailComponent implements OnInit {
         this.issue = issue;
       }
     }
+  }
+
+  handleDelete() {
+    this.issueService.deleteIssue(this.issue.id);
+    this.router.navigate(['/issues']);
   }
 }

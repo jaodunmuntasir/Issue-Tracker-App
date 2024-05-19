@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Issue } from './issue';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IssueService {
   private issues: Issue[] = [
@@ -43,7 +43,7 @@ export class IssueService {
     },
   ];
 
-  constructor() { }
+  constructor() {}
 
   getIssues(): Issue[] {
     return this.issues;
@@ -58,12 +58,19 @@ export class IssueService {
     this.issues.push(issue);
   }
 
-  updateIssue(id : number, issue: Issue) {
+  updateIssue(id: number, issue: Issue) {
     issue.id = id;
     const _issue = this.getIssueById(issue.id);
 
     if (_issue) {
       Object.assign(_issue, issue);
+    }
+  }
+
+  deleteIssue(id: number) {
+    const index = this.issues.findIndex((issue) => issue.id === id);
+    if (index > -1) {
+      this.issues.splice(index, 1);
     }
   }
 }
