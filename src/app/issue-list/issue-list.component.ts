@@ -5,6 +5,7 @@ import { StatusFilterComponent } from "../status-filter/status-filter.component"
 import { NewIssueComponent } from "../new-issue/new-issue.component";
 import { IssueFormComponent } from "../issue-form/issue-form.component";
 import { RouterLink } from '@angular/router';
+import { IssueService } from '../issue.service';
 
 @Component({
     selector: 'app-issue-list',
@@ -14,50 +15,17 @@ import { RouterLink } from '@angular/router';
     imports: [NgForOf, StatusFilterComponent, JsonPipe, IssueFormComponent, RouterLink]
 })
 export class IssueListComponent implements OnInit {
-  issues: Issue[] = [
-    {
-      id: 1,
-      title: 'Issue 1',
-      description: 'This is issue 1',
-      place: 'Place 1',
-      status: 'Open',
-    },
-    {
-      id: 2,
-      title: 'Issue 2',
-      description: 'This is issue 2',
-      place: 'Place 2',
-      status: 'Closed',
-    },
-    {
-      id: 3,
-      title: 'Issue 3',
-      description: 'This is issue 3',
-      place: 'Place 3',
-      status: 'Open',
-    },
-    {
-      id: 4,
-      title: 'Issue 4',
-      description: 'This is issue 4',
-      place: 'Place 4',
-      status: 'Closed',
-    },
-    {
-      id: 5,
-      title: 'Issue 5',
-      description: 'This is issue 5',
-      place: 'Place 5',
-      status: 'In Progress',
-    },
-  ];
+  issues: Issue[] = [];
 
   filteredIssues: Issue[] = [];
 
   status = 'All';
   selectedIssue: Issue | null = null;
 
+  constructor(private issueService: IssueService) {}
+
   ngOnInit() {
+    this.issues = this.issueService.getIssues();
     this.filterIssues();
   }
 

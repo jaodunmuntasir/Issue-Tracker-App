@@ -2,5 +2,5 @@
 <div class="container">
     <h2 class="display-2 my-3">New issue</h2>
   
-    <app-issue-form></app-issue-form>
+    <app-issue-form (save)="handleSave($event)"></app-issue-form>
 </div>
