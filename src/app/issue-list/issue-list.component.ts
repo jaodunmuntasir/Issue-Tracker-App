@@ -71,4 +71,13 @@ export class IssueListComponent implements OnInit {
     this.status = status;
     this.filterIssues();
   }
+
+  handleSave(issue: Issue) {
+    // console.log(issue);
+    if (this.selectedIssue) {
+      Object.assign(this.selectedIssue, issue);
+    }
+    
+    this.selectedIssue = null;
+  }
 }

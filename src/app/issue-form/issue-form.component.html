@@ -1,14 +1,16 @@
-{{ issue | json }} <!-- Issue object from the parent component -->
+{{ issue | json }}
+<!-- Issue object from the parent component -->
 <hr />
-{{ issueForm.value | json }} <!-- Form values -->
+{{ issueForm.value | json }}
+<!-- Form values -->
 
-<form [formGroup]="issueForm" action="" novalidate>
+<form [formGroup]="issueForm" (submit)="handleSubmit()" novalidate>
   <div class="form-group">
     <label for="title">Title</label>
     <input
       formControlName="title"
       [class.is-valid]="title?.valid && title?.touched"
-      [class.is-invalid]="title?.invalid && title?.touched && title?.dirty"
+      [class.is-invalid]="title?.invalid && (title?.touched || title?.dirty)"
       type="text"
       class="form-control"
       id="title"
@@ -23,7 +25,7 @@
       formControlName="description"
       [class.is-valid]="description?.valid && description?.touched"
       [class.is-invalid]="
-        description?.invalid && description?.touched && description?.dirty
+        description?.invalid && (description?.touched || description?.dirty)
       "
       class="form-control"
       id="description"
@@ -37,7 +39,7 @@
     <input
       formControlName="place"
       [class.is-valid]="place?.valid && place?.touched"
-      [class.is-invalid]="place?.invalid && place?.touched && place?.dirty"
+      [class.is-invalid]="place?.invalid && (place?.touched || place?.dirty)"
       type="text"
       class="form-control"
       id="place"
@@ -51,7 +53,7 @@
     <select
       formControlName="status"
       [class.is-valid]="status?.valid && status?.touched"
-      [class.is-invalid]="status?.invalid && status?.touched && status?.dirty"
+      [class.is-invalid]="status?.invalid && (status?.touched || status?.dirty)"
       class="form-control"
       id="status"
       required
@@ -63,5 +65,5 @@
     <div class="invalid-feedback">Please select a status!</div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button [disabled]="issueForm.invalid" type="submit" class="btn btn-primary">Submit</button>
 </form>

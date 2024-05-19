@@ -46,7 +46,7 @@
 //   constructor(private fb: FormBuilder) {}
 // }
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { Issue } from '../issue';
@@ -60,11 +60,12 @@ import { Issue } from '../issue';
 })
 export class IssueFormComponent implements OnChanges {
   @Input() issue: Issue | null = null;
+  @Output() save = new EventEmitter<Issue>();
 
   issueForm = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
-    place: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+    place: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]],
     status: ['', Validators.required],
   });
 
@@ -99,5 +100,10 @@ export class IssueFormComponent implements OnChanges {
 
   get status() {
     return this.issueForm.get('status');
+  }
+
+  handleSubmit() {
+    const issue = new Issue();
+    this.save.emit(Object.assign(issue, this.issueForm.value));
   }
 }
