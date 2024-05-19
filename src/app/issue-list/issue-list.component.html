@@ -20,6 +20,7 @@
             [class.list-group-item-warning]="issue.status === 'In Progress'"
             [class.list-group-item-success]="issue.status === 'Closed'"
             (click)="selectedIssue = issue"
+            [routerLink]="['/issues', issue.id]"
           >
             <div
               class="d-flex w-100 justify-content-between align-items-center"

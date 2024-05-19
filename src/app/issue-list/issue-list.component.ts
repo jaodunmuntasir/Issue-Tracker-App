@@ -4,13 +4,14 @@ import { JsonPipe, NgForOf } from '@angular/common';
 import { StatusFilterComponent } from "../status-filter/status-filter.component";
 import { NewIssueComponent } from "../new-issue/new-issue.component";
 import { IssueFormComponent } from "../issue-form/issue-form.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-issue-list',
     standalone: true,
     templateUrl: './issue-list.component.html',
     styleUrl: './issue-list.component.css',
-    imports: [NgForOf, StatusFilterComponent, JsonPipe, IssueFormComponent]
+    imports: [NgForOf, StatusFilterComponent, JsonPipe, IssueFormComponent, RouterLink]
 })
 export class IssueListComponent implements OnInit {
   issues: Issue[] = [
@@ -75,7 +76,7 @@ export class IssueListComponent implements OnInit {
   handleSave(issue: Issue) {
     // console.log(issue);
     if (this.selectedIssue) {
-      Object.assign(this.selectedIssue, issue);
+      Object.assign(this.selectedIssue, issue); // Overwrite the selected issue
     }
     
     this.selectedIssue = null;
