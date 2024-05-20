@@ -22,12 +22,12 @@ export class NewIssueComponent implements OnInit {
     private location: Location,
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     const paramId = this.route.snapshot.paramMap.get('id');
     if (paramId) {
       const id = parseInt(paramId);
       console.log('Issue id:', id);
-      const issue = this.issueService.getIssueById(id);
+      const issue = await this.issueService.getIssueById(id);
       if (issue) {
         this.issue = issue;
       }

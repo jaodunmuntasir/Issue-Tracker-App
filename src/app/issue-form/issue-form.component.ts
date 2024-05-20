@@ -65,7 +65,7 @@ export class IssueFormComponent implements OnChanges {
   issueForm = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
-    place: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]],
+    place: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]*$')]],
     status: ['', Validators.required],
   });
 
